@@ -5,7 +5,9 @@
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 [![Task](https://img.shields.io/badge/Task-2D_Unsteady_Flow_Prediction-red)]()
 
-> **A Generalizable Surrogate Model for Vehicle Aerodynamics using Local Neural Operators.** > 本项目实现了一个高效的局域神经算子 (LNO)，作为传统 CFD 求解器 (FEM) 的替代方案，用于实时预测瞬态可压缩流场的动态演化。
+> **A Generalizable Surrogate Model for Vehicle Aerodynamics using Local Neural Operators.**
+>
+> 本项目实现了一个高效的局域神经算子 (LNO)，作为传统 CFD 求解器 (FEM) 的替代方案，用于实时预测瞬态可压缩流场的动态演化。
 
 ---
 
@@ -16,6 +18,15 @@
 * **零样本泛化 (Zero-Shot Generalization)**: 训练好的单一模型可直接适应**未曾见过 (Unseen)** 的车辆几何外形（如从轿车泛化到卡车），无需重新训练或微调。
 * **混合双路径架构 (Hybrid Dual-Path)**: 创新性地融合了**谱方法 (Spectral Methods)** 与**卷积神经网络 (CNN)**，兼顾全局流场趋势与局部激波细节。
 * **高效时序预测**: 将 CFD 问题建模为 **2D 时间序列预测** 任务，支持长时间的稳定循环推理 (Recurrent Rollout)。
+
+---
+
+## 💡 为什么选择神经算子 (Why Neural Operators)?
+
+与传统的深度学习方法（如纯 CNN 或 U-Net）不同，本课题采用的**神经算子 (Neural Operator)** 学习的是函数空间之间的映射，而非固定网格上的数值映射。这赋予了模型独特的优势：
+
+1.  **边界条件泛化 (Boundary Generalization)**: 模型学习到了控制方程（Navier-Stokes）背后的算子规律。因此，**仅需训练一次**，即可直接迁移应用到具有**不同输入形状**和**不同边界条件**的仿真区域上。
+2.  **分辨率无关性 (Resolution Independence)**: 模型在低分辨率网格上训练后，可以直接在任意高分辨率网格上进行推理 (Zero-Shot Super-Resolution)，而无需重新训练。
 
 ---
 
@@ -35,7 +46,7 @@
 
 ### 1. 任务定义
 我们将非定常流场的求解定义为一个自回归的**时空序列预测问题**。
-模型映射函数为 $\mathcal{G}_\theta，输入当前时刻物理场，输入当前时刻物理场 u_t，预测下一时刻物理场，预测下一时刻物理场 u_{t+1}$：
+模型映射函数为 $\mathcal{G}_\theta$，输入为当前时刻物理场 $u_t$，预测下一时刻物理场 $u_{t+1}$：
 
 $$
 u_{t+1} = \mathcal{G}_\theta(u_t, \text{Geometry})
@@ -58,6 +69,13 @@ $$
 
 ---
 
-### 3.代码
-论文正在撰写中，论文发表后开源代码，谢谢！
+## 🚧 代码与开源 (Code & Open Source)
 
+**论文正在撰写与投稿中 (Paper in preparation).**
+
+为了遵守学术规范，本项目的完整源代码、预训练权重及数据集将在**论文正式发表/录用后**第一时间在本仓库开源。
+
+如果您对本项目感兴趣，欢迎 **Star** ⭐ 本仓库以获取最新动态，或通过下方联系方式与我交流。
+
+---
+*Author: [你的名字] | Contact: [你的邮箱]*

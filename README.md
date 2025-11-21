@@ -46,11 +46,11 @@
 
 ### 1. 任务定义
 我们将非定常流场的求解定义为一个自回归的**时空序列预测问题**。
-模型映射函数为 $\mathcal{G}_\theta$，输入为当前时刻物理场 $u_t$，预测下一时刻物理场 $u_{t+1}$：
+模型映射函数为 <img src="https://latex.codecogs.com/svg.latex?\mathcal{G}_\theta" title="\mathcal{G}_\theta" />，输入当前时刻物理场 <img src="https://latex.codecogs.com/svg.latex?u_t" title="u_t" />，预测下一时刻物理场 <img src="https://latex.codecogs.com/svg.latex?u_{t+1}" title="u_{t+1}" />：
 
-$$
-u_{t+1} = \mathcal{G}_\theta(u_t, \text{Geometry})
-$$
+<div align="center">
+  <img src="https://latex.codecogs.com/svg.latex?u_{t+1}%20=%20\mathcal{G}_\theta(u_t,%20\text{Geometry})" alt="Equation" />
+</div>
 
 通过循环调用 (Recurrently Calling)，模型可模拟长时间范围内的流体动态演化。
 

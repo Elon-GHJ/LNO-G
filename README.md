@@ -37,7 +37,9 @@
 我们将非定常流场的求解定义为一个自回归的**时空序列预测问题**。
 模型映射函数为 $\mathcal{G}_\theta，输入当前时刻物理场，输入当前时刻物理场 u_t，预测下一时刻物理场，预测下一时刻物理场 u_{t+1}$：
 
-ut+1=Gθ(ut,Geometry)u_{t+1} = \mathcal{G}_\theta(u_t, \text{Geometry})
+$$
+u_{t+1} = \mathcal{G}_\theta(u_t, \text{Geometry})
+$$
 
 通过循环调用 (Recurrently Calling)，模型可模拟长时间范围内的流体动态演化。
 
@@ -57,5 +59,5 @@ ut+1=Gθ(ut,Geometry)u_{t+1} = \mathcal{G}_\theta(u_t, \text{Geometry})
 ---
 
 ### 3.代码
-论文正在撰写中，论文发表后开源代码，敬请期待！
+论文正在撰写中，论文发表后开源代码，谢谢！
 

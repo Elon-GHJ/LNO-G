@@ -56,9 +56,6 @@ ut+1=Gθ(ut,Geometry)u_{t+1} = \mathcal{G}_\theta(u_t, \text{Geometry})
 
 ---
 
-## 🛠️ 快速开始 (Getting Started)
-
-### 环境依赖
-```bash
-pip install -r requirements.txt
+### 3.代码
+论文正在撰写中，论文发表后开源代码，敬请期待！
 

@@ -1,60 +1,78 @@
-# BloodFlow-LNO: 基于局域神经算子的血管血液动力学通用仿真框架
+# 🩸 BloodFlow-LNO
+### 基于局域神经算子的血管血液动力学通用仿真框架
+**A Generalizable Surrogate Model for Vascular Hemodynamics using Local Neural Operators**
 
-[![Python 3.8+](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
-[![PyTorch 2.0+](https://img.shields.io/badge/PyTorch-2.0%2B-orange.svg)](https://pytorch.org/)
-[![License MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![Task](https://img.shields.io/badge/Task-Hemodynamics%20Prediction-red.svg)](https://github.com/YourUsername/BloodFlow-LNO)
-
-> **A Generalizable Surrogate Model for Vascular Hemodynamics using Local Neural Operators.**
->
-> 本项目实现了一个高效的局域神经算子 (LNO)，作为传统 CFD 求解器 (FEM/FVM) 的替代方案，用于实时预测血管内复杂、时变的血流动力学流场动力学演化。
+[![Python 3.8+](https://img.shields.io/badge/Python-3.8%2B-blue.svg?style=flat-square)](https://www.python.org/)
+[![PyTorch 2.0+](https://img.shields.io/badge/PyTorch-2.0%2B-orange.svg?style=flat-square)](https://pytorch.org/)
+[![License MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![Task](https://img.shields.io/badge/Task-Hemodynamics%20Prediction-red.svg?style=flat-square)](https://github.com/YourUsername/BloodFlow-LNO)
 
 ---
 
-## 🚀 核心亮点 (Key Features)
+## 📖 项目简介
 
-本项目不仅是一个简单的流场预测模型，其核心突破在于**几何泛化性**与**混合架构设计**：
+**BloodFlow-LNO** 实现了一个高效的**局域神经算子 (Local Neural Operator, LNO)**。它作为传统计算流体力学 (CFD) 求解器（如 FEM/FVM）的深度学习替代方案，能够实时、高精度地预测复杂血管几何中随时间演化的血流动力学场。
 
-* **零样本泛化 (Zero-Shot Generalization)**: 训练好的单一模型可直接适应**未曾见过 (Unseen) 的血管几何外形**（如从动脉狭窄泛化到复杂的血管分支结构），无需重新训练或微调。
-* **混合双路径架构 (Hybrid Dual-Path)**: 创新性地融合了**谱方法 (Spectral Methods)** 与**图神经网络 (GNNs)**，兼顾全局血管树的流场趋势与局部斑块、狭窄处的细微血流动力学特征。
-* **高效时序预测**: 将血流动力学问题建模为 2D/3D 时序预测任务，支持长时间的稳定循环推理 (Recurrent Rollout)。
+> [!TIP]
+> **核心突破**：本项目通过学习控制方程背后的算子映射，实现了对**未知几何 (Unseen Geometries)** 的零样本泛化，彻底解决了传统深度学习模型对固定网格的依赖。
 
-## 💡 为什么选择神经算子 (Why Neural Operators)?
+---
 
-与传统的深度学习方法（如纯 CNN 或 U-Net）不同，神经算子学习的是函数空间之间的映射，而非固定网格上的数值映射。这赋予了模型独特的优势：
+## ✨ 核心亮点 (Key Features)
 
-1.  **边界条件泛化 (Boundary Generalization)**: 模型学习到了控制方程 (Navier-Stokes) 背后适用于血管流动的算子规律。因此，仅需训练一次，即可直接迁移应用到具有不同入口流量/压力边界条件的血管段上。
-2.  **分辨率无关性 (Resolution Independence)**: 模型在低分辨率网格上训练后，可以直接在任意高分辨率网格上进行推理 (Zero-Shot Super-Resolution)，而无需重新训练。
+* **🚀 零样本泛化 (Zero-Shot Generalization)**
+    单一预训练模型即可直接处理未见过的血管结构（如从单一狭窄到复杂的分叉网络），无需微调。
+* **🧠 混合双路径架构 (Hybrid Dual-Path)**
+    创新性融合 **谱方法 (Spectral Methods)** 与 **图神经网络 (GNNs)**，完美平衡全局流场趋势与局部微小涡流细节。
+* **⚡ 高效时序演化**
+    支持长时间步的稳定循环推理 (Recurrent Rollout)，模拟真实心动周期内的压力与速度波动。
+* **📏 分辨率无关性 (Resolution Independence)**
+    学习函数空间映射，支持在低分辨率训练、高分辨率推理（Super-Resolution）。
+
+---
 
 ## 🖼️ 结果展示 (Demo)
 
-与传统 CFD 需要为每种血管几何单独建模求解不同，以下结果均由同一个预训练 LNO 模型在不同几何边界条件下直接推理得到。
+模型在面对**从未见过**的几何边界时，表现出了极强的鲁棒性：
 
-| 几何类型 (Vessel Geometry Type) | 血流动力学演化 (速度场 Magnitude) |
-| :--- | :--- |
-| **动脉狭窄 (Arterial Stenosis)**<br>(Unseen Geometry) ![狭窄](https://github.com/user-attachments/assets/68146f38-8c96-4992-913d-89690f105396)|
+| 场景类型 | 几何特征 | 血流动力学演化 (速度场 Magnitude) |
+| :--- | :--- | :--- |
+| **动脉狭窄** | 局部管径剧缩 | ![狭窄](https://github.com/user-attachments/assets/68146f38-8c96-4992-913d-89690f105396) |
+| **血管分叉** | Y型复杂分支 | ![Y](https://github.com/user-attachments/assets/8d15d7ee-e699-49c7-baf4-dbee4567ada7) |
+| **多级分歧** | 连续拓扑变化 | ![正弦](https://github.com/user-attachments/assets/1249c3fb-0f61-478a-8479-6b8edfb1cc58) |
 
-| **血管分支 (Vascular Bifurcation)**<br>(Unseen Geometry) |![Y](https://github.com/user-attachments/assets/8d15d7ee-e699-49c7-baf4-dbee4567ada7)|
-
-| **动脉分叉 **<br>(Unseen Geometry) |![正弦](https://github.com/user-attachments/assets/1249c3fb-0f61-478a-8479-6b8edfb1cc58)|
-
+---
 
 ## 🛠️ 方法论 (Methodology)
 
 ### 1. 任务定义
-我们将时变流场的求解定义为一个自回归的时空序列预测问题。模型映射函数为 GθG_{\theta}，输入当前时刻物理场 utu_t，预测下一时刻物理场 ut+1u_{t+1}:
-ut+1=Gθ(ut,Geometry)u_{t+1} = G_{\theta}(u_t, \text{Geometry})
-通过循环调用 (Recurrently Calling)，模型可模拟长时间范围内的流体动态演化。
+我们将时变流场的求解定义为一个自回归的时空序列预测问题。模型映射函数为 GθG_{\theta}，通过当前物理场 utu_t 预测下一时刻 ut+1u_{t+1}：
 
-### 2. 模型架构: 混合双路径 (Hybrid Dual-Path)
-为了解决单一网络难以同时捕捉血管几何和流场的多尺度特征问题，LNO 内部采用了并行融合架构：
-* **谱路径 (Spectral Path)**: 捕捉全局低频趋势。利用**图傅里叶变换**等将信号映射到谱空间。
-* **物理路径 (Physical Path)**: 修正局部细节。基于**局域图卷积**捕捉局部细节和修正谱方法带来的伪影。
+ut+1=Gθ(ut,Geometry)u_{t+1} = G_{\theta}(u_t, \text{Geometry})
+
+### 2. 模型架构
+LNO 内部采用了并行融合的 **Dual-Path** 设计：
+
+* **谱路径 (Spectral Path)**：利用图傅里叶变换捕捉全局低频率、大尺度流场趋势。
+* **物理路径 (Physical Path)**：基于局域图卷积 (Local Message Passing) 修正局部细节，消除边缘伪影。
+
+
 
 ---
 
-## 📩 代码与开源 (Code & Open Source)
+## 📅 开源计划 (Roadmap)
 
-论文正在撰写与投稿中 (Paper in preparation)。为了遵守学术规范，本项目的完整源代码、预训练权重及数据集将在论文正式发表/录用后第一时间在本仓库开源。
+- [x] 核心算子 LNO 模块开发
+- [ ] 论文投稿与评审 (In Preparation)
+- [ ] 开放预训练权重与全量数据集
+- [ ] 提供基于 PyTorch Geometric 的工程化接口
 
-如果您对本项目感兴趣，欢迎 Star ⭐ 本仓库以获取最新动态。
+**注意**：为了遵守学术规范，本项目完整源码及数据将在论文正式录用后发布。
+
+---
+
+## 📩 联系与支持
+
+如果您觉得这个项目对您的研究有帮助，请点击右上角的 **Star ⭐**。这对我非常重要！
+
+[ [项目主页](https://github.com/YourUsername/BloodFlow-LNO) ] · [ [报告问题](https://github.com/YourUsername/BloodFlow-LNO/issues) ] · [ [联系作者](mailto:your-email@example.com) ]

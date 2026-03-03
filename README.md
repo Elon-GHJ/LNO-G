@@ -23,7 +23,7 @@
 * **🚀 零样本泛化 (Zero-Shot Generalization)**
     单一预训练模型即可直接处理未见过的血管结构（如从单一狭窄到复杂的分叉网络），无需微调。
 * **🧠 混合双路径架构 (Hybrid Dual-Path)**
-    创新性融合 **谱方法 (Spectral Methods)** 与 **图神经网络 (GNNs)**，完美平衡全局流场趋势与局部微小涡流细节。
+    创新性融合 **谱方法 (Spectral Methods)** 与 **卷积神经网络 (GNNs)**，完美平衡全局流场趋势与局部微小涡流细节。
 * **⚡ 高效时序演化**
     支持长时间步的稳定循环推理 (Recurrent Rollout)，模拟真实心动周期内的压力与速度波动。
 * **📏 分辨率无关性 (Resolution Independence)**
@@ -37,9 +37,9 @@
 
 | 场景类型 | 几何特征 | 血流动力学演化 (速度场 Magnitude) |
 | :--- | :--- | :--- |
-| **血管狭窄** | 局部管径剧缩 | ![狭窄](https://github.com/user-attachments/assets/68146f38-8c96-4992-913d-89690f105396) |
+| **动脉狭窄** | 局部管径剧缩 | ![狭窄](https://github.com/user-attachments/assets/68146f38-8c96-4992-913d-89690f105396) |
 | **血管分叉** | Y型复杂分支 | ![Y](https://github.com/user-attachments/assets/8d15d7ee-e699-49c7-baf4-dbee4567ada7) |
-| **血管弯曲** | 连续拓扑变化 | ![正弦](https://github.com/user-attachments/assets/1249c3fb-0f61-478a-8479-6b8edfb1cc58) |
+| **多级分歧** | 连续拓扑变化 | ![正弦](https://github.com/user-attachments/assets/1249c3fb-0f61-478a-8479-6b8edfb1cc58) |
 
 ---
 
@@ -48,7 +48,7 @@
 ### 1. 任务定义
 我们将时变流场的求解定义为一个自回归的时空序列预测问题。模型映射函数为 GθG_{\theta}，通过当前物理场 utu_t 预测下一时刻 ut+1u_{t+1}：
 
-ut+1=Gθ(ut,Geometry)u_{t+1}=G_{\theta}(u_t,\text{Geometry})
+ut+1=Gθ(ut,Geometry)u_{t+1} = G_{\theta}(u_t, \text{Geometry})
 
 ### 2. 模型架构
 LNO 内部采用了并行融合的 **Dual-Path** 设计：
@@ -56,13 +56,26 @@ LNO 内部采用了并行融合的 **Dual-Path** 设计：
 * **谱路径 (Spectral Path)**：利用图傅里叶变换捕捉全局低频率、大尺度流场趋势。
 * **物理路径 (Physical Path)**：基于局域图卷积 (Local Message Passing) 修正局部细节，消除边缘伪影。
 
+---
 
+## 💻 端到端智能仿真系统 (End-to-End Simulation System)
+
+本项目不仅提供了核心的 LNO 算法模型，还开发了一套完整的**智能血流动力学端到端仿真系统**，配备了直观的用户界面 (GUI)。
+
+![智能仿真系统界面]<img width="794" height="545" alt="image" src="https://github.com/user-attachments/assets/514743e9-0c63-4de8-ace5-6a3c1139b50b" />
+
+
+该系统将前端生理信号与后端流场仿真无缝衔接，具备以下核心功能：
+1. **生理信号映射**：支持导入光电容积脉搏波 (PPG) 信号，并利用深度学习模型（如 BiSTU-Net）端到端预测连续动脉血压 (ABP) 波形。
+2. **多形态血管仿真**：用户可一键切换不同的血管几何形态（如**狭窄**、**分支**、**弯曲**等）。
+3. **实时动态渲染**：基于 LNO 算子，系统能够突破传统 CFD 的耗时瓶颈，实时计算并渲染出二维血流动力学速度场与压力场的动态演化过程。
 
 ---
 
 ## 📅 开源计划 (Roadmap)
 
 - [x] 核心算子 LNO 模块开发
+- [x] 端到端 GUI 仿真系统构建
 - [ ] 论文投稿与评审 (In Preparation)
 - [ ] 开放预训练权重与全量数据集
 - [ ] 提供基于 PyTorch Geometric 的工程化接口

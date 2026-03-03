@@ -1,4 +1,4 @@
-![Y](https://github.com/user-attachments/assets/80df9fb1-8a3c-47d4-8cda-9fe2c4737269)![狭窄](https://github.com/user-attachments/assets/319950f6-925e-4195-8b1c-4315332abee7)# BloodFlow-LNO: 基于局域神经算子的血管血液动力学通用仿真框架
+# BloodFlow-LNO: 基于局域神经算子的血管血液动力学通用仿真框架
 
 [![Python 3.8+](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
 [![PyTorch 2.0+](https://img.shields.io/badge/PyTorch-2.0%2B-orange.svg)](https://pytorch.org/)
@@ -32,10 +32,11 @@
 
 | 几何类型 (Vessel Geometry Type) | 血流动力学演化 (速度场 Magnitude) |
 | :--- | :--- |
-| **动脉狭窄 (Arterial Stenosis)**<br>(Unseen Geometry) |  ![狭窄](https://github.com/user-attachments/assets/955ee36d-475f-487c-88ce-feba4f73f420)
-|
-| **血管分支 (Vascular Bifurcation)**<br>(Unseen Geometry) | ![Uploading Y.gif…]|
-| **动脉弯曲 (Aneurysm)**<br>(Unseen Geometry) | |![Uploading 正弦.gif…]()
+| **动脉狭窄 (Arterial Stenosis)**<br>(Unseen Geometry) ![狭窄](https://github.com/user-attachments/assets/68146f38-8c96-4992-913d-89690f105396)
+
+| **血管分支 (Vascular Bifurcation)**<br>(Unseen Geometry) |![Y](https://github.com/user-attachments/assets/8d15d7ee-e699-49c7-baf4-dbee4567ada7)
+
+| **动脉分叉 **<br>(Unseen Geometry) |![正弦](https://github.com/user-attachments/assets/1249c3fb-0f61-478a-8479-6b8edfb1cc58)
 
 
 ## 🛠️ 方法论 (Methodology)

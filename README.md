@@ -32,11 +32,11 @@
 
 | 几何类型 (Vessel Geometry Type) | 血流动力学演化 (速度场 Magnitude) |
 | :--- | :--- |
-| **动脉狭窄 (Arterial Stenosis)**<br>(Unseen Geometry) ![狭窄](https://github.com/user-attachments/assets/68146f38-8c96-4992-913d-89690f105396)
+| **动脉狭窄 (Arterial Stenosis)**<br>(Unseen Geometry) ![狭窄](https://github.com/user-attachments/assets/68146f38-8c96-4992-913d-89690f105396)|
 
-| **血管分支 (Vascular Bifurcation)**<br>(Unseen Geometry) |![Y](https://github.com/user-attachments/assets/8d15d7ee-e699-49c7-baf4-dbee4567ada7)
+| **血管分支 (Vascular Bifurcation)**<br>(Unseen Geometry) |![Y](https://github.com/user-attachments/assets/8d15d7ee-e699-49c7-baf4-dbee4567ada7)|
 
-| **动脉分叉 **<br>(Unseen Geometry) |![正弦](https://github.com/user-attachments/assets/1249c3fb-0f61-478a-8479-6b8edfb1cc58)
+| **动脉分叉 **<br>(Unseen Geometry) |![正弦](https://github.com/user-attachments/assets/1249c3fb-0f61-478a-8479-6b8edfb1cc58)|
 
 
 ## 🛠️ 方法论 (Methodology)

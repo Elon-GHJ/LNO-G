@@ -37,9 +37,9 @@
 
 | 场景类型 | 几何特征 | 血流动力学演化 (速度场 Magnitude) |
 | :--- | :--- | :--- |
-| **动脉狭窄** | 局部管径剧缩 | ![狭窄](https://github.com/user-attachments/assets/68146f38-8c96-4992-913d-89690f105396) |
+| **血管狭窄** | 局部管径剧缩 | ![狭窄](https://github.com/user-attachments/assets/68146f38-8c96-4992-913d-89690f105396) |
 | **血管分叉** | Y型复杂分支 | ![Y](https://github.com/user-attachments/assets/8d15d7ee-e699-49c7-baf4-dbee4567ada7) |
-| **多级分歧** | 连续拓扑变化 | ![正弦](https://github.com/user-attachments/assets/1249c3fb-0f61-478a-8479-6b8edfb1cc58) |
+| **血管弯曲** | 连续拓扑变化 | ![正弦](https://github.com/user-attachments/assets/1249c3fb-0f61-478a-8479-6b8edfb1cc58) |
 
 ---
 
@@ -48,7 +48,7 @@
 ### 1. 任务定义
 我们将时变流场的求解定义为一个自回归的时空序列预测问题。模型映射函数为 GθG_{\theta}，通过当前物理场 utu_t 预测下一时刻 ut+1u_{t+1}：
 
-ut+1=Gθ(ut,Geometry)u_{t+1} = G_{\theta}(u_t, \text{Geometry})
+u<sub>t+1</sub> = G<sub>θ</sub>(u<sub>t</sub>, Geometry)
 
 ### 2. 模型架构
 LNO 内部采用了并行融合的 **Dual-Path** 设计：
